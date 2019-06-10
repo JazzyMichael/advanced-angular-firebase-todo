@@ -1,0 +1,24 @@
+<mat-card style="max-width: 500px; margin: 5vh auto 0">
+  <mat-card-header>
+    <mat-card-title>Feature List</mat-card-title>
+    <mat-card-subtitle>{{ date | date }}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="https://picsum.photos/500/500" alt="Random Image">
+  <mat-card-content>
+    <mat-list>
+      <ng-container *ngFor="let feature of featureList; let i = index;">
+        <mat-list-item>
+          <mat-icon mat-list-icon>spa</mat-icon>
+          <p mat-line>{{ feature }}</p>
+        </mat-list-item>
+        <mat-divider *ngIf="featureList.length - 1 !== i"></mat-divider>
+      </ng-container>
+    </mat-list>
+  </mat-card-content>
+  <mat-card-actions style="display: flex; justify-content: space-around;">
+    <button mat-button>Button</button>
+    <button mat-raised-button>Raised</button>
+  </mat-card-actions>
+</mat-card>
+
+<div style="height: 20vh"></div>

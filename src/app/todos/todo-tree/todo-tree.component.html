@@ -1,0 +1,63 @@
+<mat-form-field *ngIf="addingRootLevel" style="text-align: center">
+    <button color="warn" matPrefix mat-icon-button (click)="cancelAddingRoot()">
+        <mat-icon>clear</mat-icon>
+    </button>
+    <input matInput #newRootLevel>
+    <button matSuffix mat-icon-button [disabled]="!newRootLevel?.value" (click)="addRootLevel(newRootLevel.value)">
+        <mat-icon [ngStyle]="{'color': newRootLevel?.value ? 'lightgreen' : 'gray'}">done</mat-icon>
+    </button>
+</mat-form-field>
+
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+
+  <!-- No Children -->
+  <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding>
+    <button mat-icon-button disabled></button>
+    <mat-checkbox
+      class="checklist-leaf-node"
+      [checked]="checklistSelection.isSelected(node)"
+      (change)="todoLeafItemSelectionToggle(node)">
+      {{ node.item }}
+    </mat-checkbox>
+    <button mat-icon-button (click)="addFirstChild(node)">
+      <mat-icon>add</mat-icon>
+    </button>
+  </mat-tree-node>
+
+  <!-- With Children -->
+  <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+    <button [disabled]="!hasAnyChildren(node)" mat-icon-button matTreeNodeToggle (click)="cancelAdd(node)">
+      <mat-icon *ngIf="hasAnyChildren(node)" class="mat-icon-rtl-mirror">
+        {{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
+      </mat-icon>
+    </button>
+    <mat-checkbox
+      [checked]="descendantsAllSelected(node) || checklistSelection.isSelected(node)"
+      [indeterminate]="descendantsPartiallySelected(node)"
+      (change)="todoItemSelectionToggle(node)">
+      {{ node.item }}
+    </mat-checkbox>
+    <button mat-icon-button *ngIf="!hasEmptyChild(node)" (click)="addNewItem(node)">
+      <mat-icon>add</mat-icon>
+    </button>
+  <button mat-icon-button *ngIf="hasEmptyChild(node)" (click)="cancelAdd(node)">
+      <mat-icon color="warn">clear</mat-icon>
+    </button>
+  </mat-tree-node>
+
+  <!-- Add New -->
+  <mat-tree-node *matTreeNodeDef="let node; when: hasNoContent" matTreeNodePadding>
+    <button mat-icon-button disabled></button>
+    <mat-form-field color="{{ itemValue.value ? 'accent' : 'warn' }}">
+      <input matInput #itemValue placeholder="New item...">
+    </mat-form-field>
+    <button mat-button (click)="saveNode(node, itemValue.value)">
+      Save
+    </button>
+  </mat-tree-node>
+
+</mat-tree>
+
+<br>
+<br>
+<button mat-raised-button (click)="logTree()">Log Tree</button>

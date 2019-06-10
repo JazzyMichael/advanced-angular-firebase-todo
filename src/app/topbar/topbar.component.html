@@ -1,0 +1,27 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row style="display: flex; justify-content: space-around;">
+    <span routerLink="/" style="cursor: pointer">Angular & Firebase</span>
+
+    <mat-slider
+      [value]="theme | async"
+      max="9"
+      min="1"
+      step="1"
+      (input)="themeChange($event)">
+    </mat-slider>
+
+    <div style="display: flex; justify-content: space-between; align-items: center; width: 100px;">
+      <mat-icon
+        routerLink="/todos"
+        color="accent"
+        style="cursor: pointer"
+        aria-hidden="false"
+        aria-label="Todos Icon">
+        list_alt
+      </mat-icon>
+
+      <app-menu></app-menu>
+    </div>
+
+  </mat-toolbar-row>
+</mat-toolbar>

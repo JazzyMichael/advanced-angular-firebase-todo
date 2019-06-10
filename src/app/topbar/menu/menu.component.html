@@ -1,0 +1,38 @@
+<button mat-icon-button [matMenuTriggerFor]="user ? loggedInMenu : loggedOutMenu">
+  <mat-icon *ngIf="menuIsOpen" color="accent">line_style</mat-icon>
+  <mat-icon *ngIf="!menuIsOpen" color="accent">line_weight</mat-icon>
+</button>
+
+<mat-menu #loggedOutMenu="matMenu">
+  <button mat-menu-item (click)="login()">Login</button>
+  <button mat-menu-item [matMenuTriggerFor]="infoMenu">Info</button>
+</mat-menu>
+
+<mat-menu #loggedInMenu="matMenu">
+  <button mat-menu-item routerLink="/profile">{{ user?.displayName || 'Profile' }}</button>
+  <button mat-menu-item [matMenuTriggerFor]="infoMenu">Info</button> 
+  <button mat-menu-item (click)="logout()">Logout</button>
+</mat-menu>
+
+<mat-menu #infoMenu="matMenu">
+  <button mat-menu-item>
+    <mat-icon>accessibility_new</mat-icon>
+    <span>Stretch</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>rowing</mat-icon>
+    <span>Row</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>pool</mat-icon>
+    <span>Swim</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>hot_tub</mat-icon>
+    <span>Hot Tub</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>local_hotel</mat-icon>
+    <span>Sleep</span>
+  </button>
+</mat-menu>

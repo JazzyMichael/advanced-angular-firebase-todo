@@ -1,0 +1,61 @@
+
+<!-- Not Signed In -->
+
+<ng-template #notSignedIn>
+    <mat-card style="text-align: center; display: flex; justify-content: center; align-items: center;">
+        <mat-icon style="cursor: default" color="warn">memory</mat-icon>
+        <span style="width: 20px"></span>
+        <p style="margin: 0">Sign in for the full experience</p>
+    </mat-card>
+</ng-template>
+
+<!-- Add top level -->
+
+<mat-form-field *ngIf="user; else notSignedIn" color="accent" appearance="fill" style="width: 100%; max-width: 500px; display: block; margin: 1em auto;">
+    <mat-label>New Project for {{ user.displayName || 'USER' }}</mat-label>
+    <input
+        matInput
+        [(ngModel)]="newProjectName"
+        (keyup.enter)="addNewTodo()">
+    <mat-icon
+        matSuffix
+        *ngIf="newProjectName?.length > 1"
+        class="add-icon"
+        (click)="addNewTodo()">
+        add
+    </mat-icon>
+    <mat-hint *ngIf="newProjectName && newProjectName.length < 2">
+        At least <strong>two</strong> characters
+    </mat-hint>
+</mat-form-field>
+
+<!-- List top level -->
+
+<mat-card *ngIf="todoService.todo$ | async as todos" style="max-width: 600px; margin: auto;">
+    <mat-selection-list #projectList (selectionChange)="onProjectSelect(projectList.selectedOptions.selected)">
+        <mat-list-option #project *ngFor="let todo of todos" [value]="todo" [disabled]="todoCards?.length > 2 && !project.selected">
+            {{ todo.item }}
+        </mat-list-option>
+    </mat-selection-list>
+</mat-card>
+
+<!-- Tree Cards -->
+
+<div style="display: flex; justify-content: space-around; margin: 1em auto;">
+    <mat-card *ngFor="let card of todoCards; let i = index;" style="min-width: 200px; min-height: 400px;">
+        <mat-card-header style="display: flex; justify-content: space-between; align-items: center;">
+            <mat-card-title style="margin: 0">{{ card.item }}</mat-card-title>
+            <button mat-icon-button [disabled]="addingRootLevel === card.item">
+                <mat-icon (click)="addingRootLevel = card.item">add</mat-icon>
+            </button>
+        </mat-card-header>
+
+        <app-todo-tree
+            *ngIf="user"
+            [todoCard]="card"
+            [userId]="user.uid"
+            [addingRootLevel]="addingRootLevel === card.item"
+            (addingRootEnded)="addingRootLevel = null">
+        </app-todo-tree>
+    </mat-card>
+</div>

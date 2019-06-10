@@ -1,0 +1,147 @@
+// Custom Theming for Angular Material: https://material.angular.io/guide/theming
+// Available color palettes: https://material.io/design/color/
+// Optional default, lighter, & darker arguments
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$light-primary: mat-palette($mat-light-blue);
+$light-accent: mat-palette($mat-amber, A200, A100, A400);
+$light-warn: mat-palette($mat-red);
+$light-theme: mat-light-theme($light-primary, $light-accent, $light-warn);
+
+@include angular-material-theme($light-theme);
+
+.theme-1 {
+    color: black;
+    background: mat-color(mat-palette($mat-blue-grey, 100));
+    // $t1-primary: mat-palette();
+    // $t1-accent: mat-palette();
+    // $t1-warn: mat-palette();
+    // $t1-theme: mat-light-theme($t1-primary, $t1-accent, $t1-warn);
+
+    // @include angular-material-theme($t1-theme);
+}
+
+.theme-2 {
+    color: black;
+    background: mat-color(mat-palette($mat-blue-gray, 200));
+
+    $t2-primary: mat-palette($mat-gray, 200);
+    $t2-accent: mat-palette($mat-blue, A700);
+    $t2-warn: mat-palette($mat-red);
+    
+    $t2-theme: mat-light-theme($t2-primary, $t2-accent, $t2-warn);
+
+    @include angular-material-theme($t2-theme);
+}
+
+.theme-3 {
+    color: black;
+    background: mat-color(mat-palette($mat-blue-gray, 300));
+
+    $t3-primary: mat-palette($mat-gray, 300);
+    $t3-accent: mat-palette($mat-blue, A400);
+    $t3-warn: mat-palette($mat-red);
+    
+    $t3-theme: mat-light-theme($t3-primary, $t3-accent, $t3-warn);
+
+    @include angular-material-theme($t3-theme);
+}
+
+.theme-4 {
+    color: white;
+    background: mat-color(mat-palette($mat-blue-gray, 400));
+
+    $t4-primary: mat-palette($mat-gray, 400);
+    $t4-accent: mat-palette($mat-blue, A200);
+    $t4-warn: mat-palette($mat-red);
+    
+    $t4-theme: mat-light-theme($t4-primary, $t4-accent, $t4-warn);
+
+    @include angular-material-theme($t4-theme);
+}
+
+.theme-5 {
+    color: white;
+    background: mat-color(mat-palette($mat-blue-gray, 500));
+
+    $t5-primary: mat-palette($mat-gray, 500);
+    $t5-accent: mat-palette($mat-light-blue, A400);
+    $t5-warn: mat-palette($mat-red);
+    
+    $t5-theme: mat-dark-theme($t5-primary, $t5-accent, $t5-warn);
+
+    @include angular-material-theme($t5-theme);
+}
+
+.theme-6 {
+    color: white;
+    background: mat-color(mat-palette($mat-blue-gray, 600));
+
+    $t6-primary: mat-palette($mat-gray, 600);
+    $t6-accent: mat-palette($mat-light-blue, A200);
+    $t6-warn: mat-palette($mat-red);
+    
+    $t6-theme: mat-dark-theme($t6-primary, $t6-accent, $t6-warn);
+
+    @include angular-material-theme($t6-theme);
+}
+
+.theme-7 {
+    color: white;
+    background: mat-color(mat-palette($mat-blue-gray, 700));
+
+    $t7-primary: mat-palette($mat-gray, 700);
+    $t7-accent: mat-palette($mat-cyan, A400);
+    $t7-warn: mat-palette($mat-red);
+    
+    $t7-theme: mat-dark-theme($t7-primary, $t7-accent, $t7-warn);
+
+    @include angular-material-theme($t7-theme);
+}
+
+.theme-8 {
+    color: white;
+    background: mat-color(mat-palette($mat-blue-gray, 800));
+
+    $t8-primary: mat-palette($mat-gray, 800);
+    $t8-accent: mat-palette($mat-cyan, A200);
+    $t8-warn: mat-palette($mat-red);
+    
+    $t8-theme: mat-dark-theme($t8-primary, $t8-accent, $t8-warn);
+
+    @include angular-material-theme($t8-theme);
+}
+
+.theme-9 {
+    color: white;
+    background: mat-color(mat-palette($mat-blue-gray, 900));
+
+    $t9-primary: mat-palette($mat-gray, 900);
+    $t9-accent: mat-palette($mat-teal, A200);
+    $t9-warn: mat-palette($mat-red);
+    
+    $t9-theme: mat-dark-theme($t9-primary, $t9-accent, $t9-warn);
+
+    @include angular-material-theme($t9-theme);
+}
+
+// .dark-theme {
+//     color: $light-primary-text;
+//     $background: mat-palette($mat-blue-grey, A800, A700, A900);
+//     $dark-primary: mat-palette($mat-blue-grey);
+//     $dark-accent: mat-palette($mat-teal, A200, A100, A400);
+//     $dark-warn: mat-palette($mat-deep-orange);
+//     $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+//     @include angular-material-theme($dark-theme);
+// }
+
+// Global Styles
+html, body { height: 100%; }
+body { margin: 0; font-family: "Roboto", "Helvetica Neue", sans-serif; }
+
+*:focus {
+    outline: none !important;
+}
